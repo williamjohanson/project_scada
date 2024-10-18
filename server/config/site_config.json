@@ -1,0 +1,14 @@
+{
+    "siteName": "William Johanson LTD",
+    "logoUrl": "/static/images/logo.png",
+    "machines": [
+      { "id": "machine-1", "name": "Machine Eins"},
+      { "id": "machine-2", "name": "Machine Zwei"},
+      { "id": "machine-3", "name": "Machine Drei"},
+      { "id": "machine-4", "name": "Machine Veur"},
+      { "id": "machine-5", "name": "Machine Funf"},
+      { "id": "machine-6", "name": "Machine Sechs"},
+      { "id": "machine-7", "name": "Machine Seben"}
+    ]
+  }
+  
