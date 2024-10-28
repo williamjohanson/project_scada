@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import './Home.css';
-import { FaCogs, FaChartLine, FaTools } from 'react-icons/fa'; // Icons for menu
+import Sidebar from '../components/Sidebar';
+import { FaCogs, FaChartLine, FaTools } from 'react-icons/fa';
 
 function Home() {
   const [config, setConfig] = useState(null);
+  const [menuType, setMenuType] = useState('global'); // Menu type (global/machine)
+  const [sidebarOpen, setSidebarOpen] = useState(true); // State to control sidebar visibility
 
   useEffect(() => {
     const apiUrl = process.env.REACT_APP_API_BASE_URL;
 
+    // Fetch configuration data from API
     fetch(`${apiUrl}/api/config`)
       .then(response => {
         if (!response.ok) {
@@ -15,59 +19,51 @@ function Home() {
         }
         return response.json();
       })
-      .then(data => 
-        {
-          const updatedConfig = {
-            ...data,
-            logoUrl: `${apiUrl}${data.logoUrl}`, // Add the full URL to the logo
-          };
-          setConfig(updatedConfig);
-          console.log('Config data:', updatedConfig);  // Log to verify the response
-        })
+      .then(data => {
+        const updatedConfig = {
+          ...data,
+          logoUrl: `${apiUrl}${data.logoUrl}`, // Add the full URL to the logo
+        };
+        setConfig(updatedConfig);
+      })
       .catch(error => console.error('Error fetching config:', error));
   }, []);
 
+  // Handle loading state
   if (!config) {
     return <div className="loading">Loading System Configuration...</div>;
   }
 
+  // Toggle Sidebar visibility
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
   return (
-    <div className="homepage advanced-theme">
+    <div className={`homepage ${sidebarOpen ? 'with-sidebar' : 'no-sidebar'}`}>
+      {/* Sidebar Component */}
+      <Sidebar menuType={menuType} machines={config.machines} isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
+
+      {/* Header Section */}
       <header className="header">
         <img src={config.logoUrl} alt="Sawmill Logo" className="logo animated-logo" />
         <h1 className="site-title">{config.siteName} Optimization Hub</h1>
       </header>
 
-      <div className="dashboard">
-        <div className="analytics-widget">
-          <h3>Real-Time Production Efficiency</h3>
-          <div className="efficiency-meter"></div>
-        </div>
-        <div className="analytics-widget">
-          <h3>System Load</h3>
-          <div className="progress-bar"></div>
-        </div>
-      </div>
-
+      {/* Machine Menu Section */}
       <nav className="machine-menu">
         <h2>Control Panel</h2>
         <ul>
           {config.machines.map((machine, index) => (
             <li key={index} className="menu-item">
               <FaTools className="menu-icon" />
-              <a href={`/machines/${machine.id}`} className="launch-button">{machine.name}</a>
+              <a href={`/machines/${machine.id}`} className="launch-button">
+                {machine.name}
+              </a>
             </li>
           ))}
         </ul>
       </nav>
-
-      <div className="analytics global">
-        <h2>Global Site Analytics</h2>
-        <ul>
-          <li><FaChartLine className="analytics-icon" /><a href="/analytics/performance">Performance Analytics</a></li>
-          <li><FaCogs className="analytics-icon" /><a href="/analytics/downtime">Downtime Analytics</a></li>
-        </ul>
-      </div>
     </div>
   );
 }
