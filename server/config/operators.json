@@ -1,0 +1,30 @@
+{
+    "operators": [
+        {
+            "name": "Joe Blogg",
+            "role": "Bitch Boy",
+            "phone": "69",
+            "priority": 2,
+            "onCall": false,
+            "photo": "",
+            "id": 1730095744854
+        },
+        {
+            "name": "Mike Nolan",
+            "role": "Inhaler",
+            "phone": "911",
+            "priority": 3,
+            "onCall": false,
+            "id": 1730095787962
+        },
+        {
+            "id": 1730094635295,
+            "name": "William Johanson",
+            "onCall": true,
+            "phone": "420",
+            "photo": "",
+            "priority": 1,
+            "role": "Head Honcho"
+        }
+    ]
+}

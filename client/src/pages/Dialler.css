@@ -81,4 +81,88 @@
     font-size: 16px;
     color: #333;
   }
+
+  .dialler-page {
+    padding: 20px;
+  }
   
+  .operator-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    width: 100%;
+  }
+
+  
+/* Styling for operator card inside the sidebar */
+.operator-card {
+    position: relative;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+  
+  .delete-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .confirmation-popup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 8px;
+  }
+  
+  .operator-photo {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  .add-operator-form {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+/* Right sidebar for operators */
+.operators-sidebar {
+    width: 300px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-left: 1px solid #ddd;
+    box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.operators-sidebar h2 {
+    font-size: 1.8rem;
+    color: #005881;
+    margin-bottom: 10px;
+}
+
